@@ -1,0 +1,22 @@
+.stats-card {
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  &__item {
+    min-width: 150px;
+    margin: 8px 0;
+    text-align: center;
+  }
+
+  &__item-heading {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  &__item-body {
+    font-size: 16px;
+  }
+}

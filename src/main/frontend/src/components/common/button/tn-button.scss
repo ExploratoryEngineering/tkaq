@@ -1,0 +1,39 @@
+@import "variables/grid";
+
+.tn-button {
+  appearance: none;
+  position: relative;
+  padding: 0;
+
+  + .button,
+  + .tn-button {
+    margin-left: $grid-size;
+  }
+
+  &__text {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 $grid-size * 2;
+
+    &--hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    &--no-padding {
+      padding: 0;
+    }
+  }
+
+  &__spinner {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+  }
+}

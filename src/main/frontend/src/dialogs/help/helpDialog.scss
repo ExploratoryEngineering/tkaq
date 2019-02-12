@@ -1,0 +1,16 @@
+@import "variables/grid";
+
+.help-dialog {
+  &__content {
+    width: 70%;
+    min-width: 240px;
+    margin: 0 auto;
+    padding: $grid-size * 2;
+  }
+
+  &__illustration {
+    max-width: 440px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}

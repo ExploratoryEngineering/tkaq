@@ -1,0 +1,31 @@
+<template>
+  <require from="./server-error.scss"></require>
+  <section class="server-error">
+    <div class="server-error__content">
+      <h1 class="h1 server-error__header">
+        Oops, unfortunately something went wrong!
+      </h1>
+      <div class="server-error__container">
+        <div class="server-error__text">
+          <p class="server-error__paragraph">
+            Sometimes stuff goes... wrong. Fear not, everything will be up and running shortly as
+            our developers have had bells and alarms alert them to the situation. Might I suggest
+            getting a coffee and then hitting one of the buttons below?
+          </p>
+          <div class="server-error__actions">
+            <tn-button if.bind="hasBackNavigation" click.delegate="navigateBack()" primary raised
+              >Back to where you came from</tn-button
+            >
+          </div>
+        </div>
+        <figure class="server-error__illustration">
+          <img
+            class="server-error__illustration-image"
+            src="/images/undraw_playful_cat.svg"
+            alt="Playful kitty destroy servers"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+</template>

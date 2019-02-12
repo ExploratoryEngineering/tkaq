@@ -1,0 +1,96 @@
+/*
+	Copyright 2019 Telenor Digital AS
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+*/
+
+$table-background-color: transparent;
+
+$table-head-color: $font-color-secondary;
+$table-head-font-size: $font-size--12;
+$table-head-font-weight: $font-weight--medium;
+$table-head-border: 2px solid rgba(189, 193, 193, 0.2);
+
+$table-data-color: $font-color-primary;
+$table-data-font-size: $font-size--16;
+$table-data-font-weight: $font-weight--regular;
+$table-data-border: 1px solid rgba(189, 193, 193, 0.2);
+$table-data-row-hover-background-color: rgba(229, 230, 230, 0.25);
+
+.table {
+  width: 100%;
+  background-color: $table-background-color;
+  border-collapse: collapse;
+
+  &--fixed {
+    table-layout: fixed;
+  }
+
+  &__head-data {
+    height: $grid-size * 6;
+    padding: 0 $grid-size * 3;
+    border-bottom: $table-head-border;
+    color: $table-head-color;
+    font-size: $table-head-font-size;
+    font-weight: $table-head-font-weight;
+    text-align: left;
+    white-space: nowrap;
+
+    &--action-column {
+      width: $grid-size * 8;
+    }
+  }
+
+  tr > &__data {
+    height: $grid-size * 6;
+    padding: 0 $grid-size * 3;
+    border-top: $table-data-border;
+    color: $table-data-color;
+    font-size: $table-data-font-size;
+    font-weight: $table-data-font-weight;
+    white-space: nowrap;
+
+    /* stylelint-disable selector-max-type */
+    &--align-right {
+      text-align: right;
+    }
+
+    &--action-column {
+      width: $grid-size * 8;
+      color: $font-color-secondary;
+    }
+
+    &--tall {
+      height: 100px;
+    }
+    /* stylelint-enable selector-max-type */
+  }
+
+  /* stylelint-disable-next-line selector-max-type */
+  tr:first-child > &__data {
+    border-top: 0;
+  }
+
+  &__data-row--hover:hover > &__data {
+    background-color: $table-data-row-hover-background-color;
+  }
+}
+
+.table-overflow {
+  width: 100%;
+
+  @include screen-max($tablet-break-max) {
+    overflow-x: auto;
+    overflow-y: visible;
+  }
+}

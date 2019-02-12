@@ -1,0 +1,15 @@
+<template>
+  <require from="components/common/snackbar/snackbar"></require>
+  <require from="components/common/nav-header/nav-header.html"></require>
+  <require from="components/common/loading-indicator/loading-indicator"></require>
+  <require from="components/common/version-controller/version-controller"></require>
+  <require from="components/common/cookie-box/tn-cookie-box"></require>
+  <version-controller></version-controller>
+  <tn-cookie-box></tn-cookie-box>
+  <loading-indicator loading.bind="router.isNavigating"></loading-indicator>
+  <snackbar></snackbar>
+  <nav-header router.bind="router"></nav-header>
+  <div class="page-content page-container">
+    <router-view containerless></router-view>
+  </div>
+</template>

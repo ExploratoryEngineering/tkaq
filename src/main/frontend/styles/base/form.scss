@@ -1,0 +1,237 @@
+/*
+	Copyright 2019 Telenor Digital AS
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+*/
+@import "mixins/responsive";
+
+$form-color: $font-color-secondary;
+$form-color-active: $font-color-primary;
+
+$form-element-font-size: $font-size--15;
+$form-element-height: $grid-size * 4;
+$form-element-background-color: $color-grey-theme--dark;
+$form-element-underline-color: $color--brand-blue;
+$form-element-transition: 0.2s ease all;
+
+$form-label-font-size: $font-size--13;
+$form-help-text-font-size: $font-size--13;
+
+.form {
+  @include screen-min($tablet-break-min) {
+    width: 70%;
+    min-width: 240px;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: $grid-size * 2;
+  }
+}
+
+.radio-group {
+  display: flex;
+
+  &__input {
+    align-self: center;
+    margin-right: $grid-size * 2;
+  }
+
+  &__input-text {
+    padding: $grid-size;
+    cursor: pointer;
+  }
+}
+
+.form-group {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin-bottom: $grid-size;
+
+  &--centered {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &--compact {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    padding: $grid-size * 4 $grid-size * 2 $grid-size;
+    transition: border 0.2s ease-in-out;
+    border: 0;
+    border-bottom: solid 1px $color-grey-theme--darkest;
+    border-radius: 2px 2px 0 0;
+    outline: 0;
+    background-color: $form-element-background-color;
+    color: $form-color;
+    font-size: $form-element-font-size;
+    box-shadow: none;
+    resize: none;
+    appearance: none;
+
+    &:hover {
+      border-bottom: solid 1px $font-color-primary;
+    }
+
+    &:focus {
+      color: $form-color-active;
+    }
+
+    &[readonly] {
+      border-bottom-style: dashed;
+      cursor: not-allowed;
+    }
+
+    &--textarea {
+      padding: 4px 0;
+    }
+
+    &--has-data {
+      color: $form-color-active;
+    }
+
+    &--compact {
+      padding: $grid-size;
+    }
+  }
+
+  &__focus-underline {
+    position: absolute;
+    bottom: 0;
+    left: 45%;
+    width: 10px;
+    height: 2px;
+    transition: $form-element-transition;
+    background-color: $form-element-underline-color;
+    content: "";
+    visibility: hidden;
+
+    &--focus {
+      left: 0;
+      width: 100%;
+      visibility: visible;
+    }
+
+    &--error {
+      left: 0;
+      width: 100%;
+      background-color: $color--red;
+      visibility: visible;
+    }
+  }
+
+  &__select {
+    width: 100%;
+    height: $form-element-height;
+    margin: $grid-size 0;
+    border-radius: 2px;
+    background-color: transparent;
+  }
+
+  &__select-options {
+    display: none;
+  }
+
+  &__select-label {
+    position: absolute;
+    top: $grid-size * 1.5;
+    left: $grid-size * 2;
+    transition: $form-element-transition;
+    color: $form-color;
+    font-size: $form-label-font-size;
+
+    &--focus {
+      color: $color--brand-blue;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    bottom: $grid-size * 4;
+    left: $grid-size * 2;
+    width: 100%;
+    margin-bottom: 0;
+    transition: $form-element-transition;
+    color: $form-color;
+    font-size: $form-label-font-size;
+
+    &--floating {
+      bottom: $grid-size * 2.5;
+      font-size: $form-element-font-size;
+    }
+
+    &--focus {
+      bottom: $grid-size * 4;
+      color: $color--brand-blue;
+      font-size: $form-label-font-size;
+      pointer-events: none;
+    }
+
+    &--has-data {
+      bottom: $grid-size * 4;
+      color: $form-color;
+      font-size: $form-label-font-size;
+    }
+
+    &--error {
+      color: $color--red;
+    }
+
+    &--readonly {
+      cursor: not-allowed;
+    }
+  }
+
+  &__details-text-container {
+    display: flex;
+    margin-right: $grid-size * 2;
+    margin-bottom: $grid-size * 2;
+    margin-left: $grid-size * 2;
+    transition: color 0.2s ease-in-out;
+    color: transparent;
+    font-size: $form-help-text-font-size;
+
+    &--visible {
+      color: $font-color-secondary;
+    }
+  }
+
+  &__error-text {
+    color: $color--red;
+  }
+
+  &__max-length {
+    align-self: flex-end;
+    margin-left: auto;
+    transition: all 0.2s ease-in-out;
+
+    &--error {
+      color: $color--red;
+      font-weight: $font-weight--bold;
+    }
+  }
+}
+/* stylelint-disable-next-line */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

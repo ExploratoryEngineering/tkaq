@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noUnusedLocals": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "sourceRoot": "src",
+    "baseUrl": "src",
+    "lib": ["es2017", "dom"],
+    "paths": {
+      "*": ["types/*"],
+      "Services/*": ["services/*"],
+      "Helpers/*": ["helpers/*"],
+      "Models/*": ["models/*"],
+      "Components/*": ["components/*"],
+      "Dialogs/*": ["dialogs/*"],
+      "Test/*": ["../test/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

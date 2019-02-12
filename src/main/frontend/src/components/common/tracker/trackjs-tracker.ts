@@ -1,0 +1,43 @@
+/*
+	Copyright 2019 Telenor Digital AS
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+*/
+
+import { LogBuilder } from "Helpers/LogBuilder";
+interface TrackJs {
+  track(errorMessage: string);
+}
+
+declare global {
+  interface Window {
+    trackJs: TrackJs;
+  }
+}
+
+const Log = LogBuilder.create("TrackJs tracker");
+
+export class TrackJsTracker {
+  trackError(error: string) {
+    this.getTrackJs().track(error);
+  }
+
+  getTrackJs(): TrackJs {
+    const tempErrorFunc = {
+      track: (errorString) => {
+        Log.debug(`Would've sent error, but no TrackJs: ${errorString}`);
+      },
+    };
+    return window.trackJs || tempErrorFunc;
+  }
+}

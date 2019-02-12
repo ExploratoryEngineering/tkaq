@@ -1,0 +1,217 @@
+/*
+	Copyright 2019 Telenor Digital AS
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+*/
+
+// Generic button setup
+$button-padding: 0;
+$button-font-size: $font-size--15;
+$button-font-weight: $font-weight--medium;
+
+// Primary button setup
+$button-primary-color: $font-color-primary--colored;
+$button-primary-background-color: $color--brand-blue;
+$button-primary-border-color: $color--brand-blue;
+
+$button-primary-hover-color: $font-color-primary--colored;
+$button-primary-hover-background-color: $color--brand-blue-dark;
+$button-primary-hover-border-color: $color--brand-blue-dark;
+
+$button-primary-active-color: $font-color-primary--colored;
+$button-primary-active-background-color: $color--brand-blue-darker;
+$button-primary-active-border-color: $color--brand-blue-darker;
+
+$button-primary-disabled-color: $font-color-disabled--colored;
+$button-primary-disabled-background-color: rgba(0, 0, 0, 0.15);
+$button-primary-disabled-border-color: transparent;
+
+// Flat button setup
+$button-flat-color: $color--brand-blue;
+$button-flat-background-color: transparent;
+$button-flat-border-color: transparent;
+
+$button-flat-hover-color: inherit;
+$button-flat-hover-background-color: rgba(12, 12, 12, 0.07);
+$button-flat-hover-border-color: transparent;
+
+$button-flat-active-color: $color--brand-blue-dark;
+$button-flat-active-background-color: darken($button-flat-hover-background-color, 5%);
+$button-flat-active-border-color: transparent;
+
+$button-flat-disabled-color: #313534;
+$button-flat-disabled-background-color: rgba(0, 0, 0, 0.15);
+$button-flat-disabled-border-color: transparent;
+
+// Raised button setup
+$button-raised-transition: box-shadow 0.15s ease-out, background-color 0.15s ease-out;
+$button-raised-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+$button-raised-hover-box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.38);
+
+// Floating button setup
+$button-floating-transition: box-shadow 0.15s ease-out, background-color 0.15s ease-out;
+$button-floating-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+$button-floating-hover-box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.38);
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  margin-bottom: 0;
+  padding: $button-padding;
+  transition: background-color 0.15s ease-out;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background-image: none;
+  font-size: $button-font-size;
+  font-weight: $button-font-weight;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+
+  @include roboto;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &[disabled],
+  &--disabled {
+    border-color: transparent;
+    background: $button-primary-disabled-background-color;
+    color: $button-primary-disabled-color;
+    opacity: 0.3;
+  }
+
+  + .button {
+    margin-left: $grid-size;
+  }
+
+  &--primary {
+    border-color: $button-primary-border-color;
+    background-color: $button-primary-background-color;
+    color: $button-primary-color;
+
+    &:hover,
+    &:focus {
+      border-color: $button-primary-hover-border-color;
+      background-color: $button-primary-hover-background-color;
+      color: $button-primary-hover-color;
+    }
+
+    &:active {
+      border-color: $button-primary-active-border-color;
+      background-color: $button-primary-active-background-color;
+      color: $button-primary-active-color;
+    }
+
+    &[disabled] {
+      border-color: transparent;
+      background: $button-primary-disabled-background-color;
+      color: $button-primary-disabled-color;
+      opacity: 0.3;
+    }
+  }
+
+  &--flat {
+    border-color: $button-flat-border-color;
+    background-color: $button-flat-background-color;
+    color: $button-flat-color;
+    font-weight: 500;
+
+    &:hover,
+    &:focus {
+      border-color: $button-flat-hover-border-color;
+      background-color: $button-flat-hover-background-color;
+      box-shadow: none;
+    }
+
+    &:active {
+      border-color: $button-flat-active-border-color;
+      background-color: $button-flat-active-background-color;
+      color: $button-flat-active-color;
+    }
+
+    &[disabled] {
+      border-color: $button-flat-disabled-border-color;
+      background: $button-flat-disabled-background-color;
+      color: $button-flat-disabled-color;
+      filter: alpha(opacity=30);
+      opacity: 0.3;
+    }
+  }
+
+  &--raised {
+    transition: $button-raised-transition;
+    box-shadow: $button-raised-box-shadow;
+
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: $button-raised-hover-box-shadow;
+    }
+
+    &[disabled] {
+      box-shadow: none;
+    }
+  }
+
+  &--floating {
+    width: $grid-size * 6;
+    height: $grid-size * 6;
+    padding: 0;
+    transition: $button-floating-transition;
+    border-radius: 100%;
+    font-size: 17px;
+    line-height: ($grid-size * 6) - 2;
+    box-shadow: $button-floating-box-shadow;
+
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: $button-floating-hover-box-shadow;
+    }
+
+    &[disabled] {
+      box-shadow: none;
+    }
+
+    // Should probably find a better way than this
+    /* stylelint-disable-next-line selector-max-universal */
+    > * {
+      line-height: inherit;
+    }
+  }
+
+  &--icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+  }
+}
+
+.button-position {
+  &--absolute-bottom-right {
+    position: absolute;
+    right: 30px;
+    bottom: 40px;
+  }
+}
+
+.button-group {
+  padding: $grid-size * 2;
+}

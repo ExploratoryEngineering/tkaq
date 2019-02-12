@@ -1,0 +1,29 @@
+<template class="stats-card">
+  <require from="./stats-card.scss"></require>
+  <tn-card>
+    <tn-card-body>
+      <div class="stats-card__items">
+        <div class="stats-card__item">
+          <h3 class="stats-card__item-heading">${tkaqDataPoints.length}</h3>
+          <div class="stats-card__item-body">Number of data points</div>
+        </div>
+        <div class="stats-card__item">
+          <h3 class="stats-card__item-heading">
+            ${tkaqDataPoints.length ? tempMean : "N/A"} &deg;C
+          </h3>
+          <div class="stats-card__item-body">Temperature mean</div>
+        </div>
+        <div class="stats-card__item">
+          <h3 class="stats-card__item-heading">${tkaqDataPoints.length ? co2Mean : "N/A"} ppm</h3>
+          <div class="stats-card__item-body">CO2 equivalent mean</div>
+        </div>
+        <div class="stats-card__item">
+          <h3 class="stats-card__item-heading">
+            ${tkaqDataPoints.length ? humidityMean : "N/A"} %
+          </h3>
+          <div class="stats-card__item-body">Humidity mean</div>
+        </div>
+      </div>
+    </tn-card-body>
+  </tn-card>
+</template>

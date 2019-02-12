@@ -1,0 +1,13 @@
+node_modules
+node
+.DS_STORE
+npm-debug.log*
+/dist
+/build
+/typings
+/.awcache
+/release
+/test/coverage
+/test/coverage-jest
+test-report.xml
+version.json

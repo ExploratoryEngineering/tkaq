@@ -1,0 +1,26 @@
+<template class="tn-button">
+  <button
+    ref="button"
+    class="button
+  ${ hasProp('disabled') ? 'button--disabled' : '' }
+  ${ hasProp('primary') ? 'button--primary' : '' }
+  ${ hasProp('flat') ? 'button--flat' : '' }
+  ${ hasProp('raised') ? 'button--raised' : '' }
+  ${ hasProp('icon') ? 'button--icon' : '' }
+  "
+    attach-focus="${hasProp('focusElement') ? 'true' : 'false'}"
+  >
+    <span
+      class="
+      tn-button__text
+      ${ loading ? 'tn-button__text--hidden' : '' }
+      ${ hasProp('icon') ? 'tn-button__text--no-padding' : '' }
+    "
+    >
+      <slot></slot>
+    </span>
+    <span class="tn-button__spinner" if.bind="loading">
+      <tn-spinner small colored.bind="primary"></tn-spinner>
+    </span>
+  </button>
+</template>

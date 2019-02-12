@@ -1,0 +1,15 @@
+<template>
+  <require from="./snackbar.scss"></require>
+  <div data-cy="snackbar" class="snackbar ${ isActive ? 'snackbar--active' : '' }">
+    <div class="snackbar__message-container">
+      <span class="snackbar__message">${ message }</span>
+      <tn-button
+        data-cy="close-snackbar-message"
+        class="snackbar__button"
+        flat
+        click.delegate="closeCurrentMessage()"
+        ><span class="snackbar__button-text">Close</span></tn-button
+      >
+    </div>
+  </div>
+</template>

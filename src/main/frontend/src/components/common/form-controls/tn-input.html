@@ -1,0 +1,59 @@
+<template
+  class="
+  ${hasProp('inline') ? 'tn-input--inline' : '' }
+"
+>
+  <div class="form-group">
+    <input
+      ref="inputElement"
+      id="${name}"
+      class="
+    form-group__input
+    ${errorText ? 'form-group__input--error' : ''}
+    ${hasValue ? 'form-group__input--has-data' : ''}
+  "
+      value.bind="value"
+      focus.bind="hasFocus"
+      type="${type}"
+      autocomplete="${hasProp('autocomplete') ? 'on' : 'off'}"
+      readonly.bind="isReadOnly"
+      attach-focus="${hasProp('focusElement') ? 'true' : 'false'}"
+    />
+    <label
+      for="${name}"
+      class="
+    form-group__label
+    ${hasFocus ? 'form-group__label--focus' : ''}
+    ${errorText ? 'form-group__label--error' : ''}
+    ${hasValue ? 'form-group__label--has-data' : ''}
+    ${isReadOnly ? 'form-group__label--readonly' : ''}
+    ${hasProp('floatingLabel') ? 'form-group__label--floating' : '' }
+  "
+      >${label}</label
+    >
+    <div
+      class="
+      form-group__focus-underline
+      ${hasFocus ? 'form-group__focus-underline--focus' : ''}
+      ${errorText ? 'form-group__focus-underline--error' : ''}
+      ${isReadOnly ? 'form-group__focus-underline--readonly' : ''}
+    "
+    ></div>
+  </div>
+  <div
+    class="
+    form-group__details-text-container
+    ${ hasFocus ? 'form-group__details-text-container--visible' : '' }
+  "
+  >
+    <span if.bind="helpText && (hasFocus || !errorText)" class="form-group__help-text"
+      >${helpText}</span
+    >
+    <span if.bind="errorText && !hasFocus" class="form-group__error-text">${errorText}</span>
+    <span
+      if.bind="maxLength"
+      class="form-group__max-length ${value.length > maxLength ? 'form-group__max-length--error' : ''}"
+      >${value.length || 0} / ${maxLength}</span
+    >
+  </div>
+</template>

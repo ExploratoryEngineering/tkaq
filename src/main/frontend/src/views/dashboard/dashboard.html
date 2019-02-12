@@ -1,0 +1,90 @@
+<template>
+  <require from="./dataFilter/data-filter"></require>
+  <require from="./stats/stats-card"></require>
+  <require from="./visualizations/plot-visualization"></require>
+  <require from="./visualizations/heatmap-visualization"></require>
+  <tn-grid>
+    <tn-grid-row>
+      <tn-grid-item grid-size="12">
+        <tn-card>
+          <tn-card-header>
+            <data-filter
+              devices.bind="devices"
+              filtered-device-id.bind="filteredDeviceId"
+              is-live.bind="isLive"
+              date-range.bind="dateRange"
+            ></data-filter>
+          </tn-card-header>
+        </tn-card>
+      </tn-grid-item>
+    </tn-grid-row>
+    <tn-grid-row>
+      <tn-grid-item>
+        <stats-card tkaq-data-points.bind="tkaqDataPoints"></stats-card>
+      </tn-grid-item>
+    </tn-grid-row>
+    <tn-grid-row>
+      <tn-grid-item grid-size="12">
+        <heatmap-visualization tkaq-data-points.bind="tkaqDataPoints"></heatmap-visualization>
+      </tn-grid-item>
+    </tn-grid-row>
+    <tn-grid-row>
+      <tn-grid-item grid-size="12">
+        <tn-card>
+          <tn-card-header>
+            <tn-card-title>Temperature &deg;C</tn-card-title>
+          </tn-card-header>
+          <tn-card-body no-padding>
+            <plot-visualization
+              devices.bind="devices"
+              tkaq-data-points.bind="tkaqDataPoints"
+              data-key="temperature"
+            ></plot-visualization>
+          </tn-card-body>
+        </tn-card>
+      </tn-grid-item>
+      <tn-grid-item grid-size="12">
+        <tn-card>
+          <tn-card-header>
+            <tn-card-title>Humidity %</tn-card-title>
+          </tn-card-header>
+          <tn-card-body no-padding>
+            <plot-visualization
+              devices.bind="devices"
+              tkaq-data-points.bind="tkaqDataPoints"
+              data-key="relHumidity"
+            ></plot-visualization>
+          </tn-card-body>
+        </tn-card>
+      </tn-grid-item>
+      <tn-grid-item grid-size="12">
+        <tn-card>
+          <tn-card-header>
+            <tn-card-title>PM10</tn-card-title>
+          </tn-card-header>
+          <tn-card-body no-padding>
+            <plot-visualization
+              devices.bind="devices"
+              tkaq-data-points.bind="tkaqDataPoints"
+              data-key="pm10"
+            ></plot-visualization>
+          </tn-card-body>
+        </tn-card>
+      </tn-grid-item>
+      <tn-grid-item grid-size="12">
+        <tn-card>
+          <tn-card-header>
+            <tn-card-title>VOC Equivalents</tn-card-title>
+          </tn-card-header>
+          <tn-card-body no-padding>
+            <plot-visualization
+              devices.bind="devices"
+              tkaq-data-points.bind="tkaqDataPoints"
+              data-key="vocEquivalents"
+            ></plot-visualization>
+          </tn-card-body>
+        </tn-card>
+      </tn-grid-item>
+    </tn-grid-row>
+  </tn-grid>
+</template>

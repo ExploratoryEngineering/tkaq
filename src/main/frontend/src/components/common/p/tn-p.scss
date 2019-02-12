@@ -1,0 +1,13 @@
+@import "variables/grid";
+@import "setup/typography";
+
+.tn-p {
+  display: block;
+  margin: 0;
+  margin-bottom: $grid-size * 2;
+  line-height: 1.5;
+
+  &--secondary {
+    color: $font-color-secondary;
+  }
+}

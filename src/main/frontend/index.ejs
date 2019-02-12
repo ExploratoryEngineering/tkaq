@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html class="html" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FFF" />
+    <base href="/" />
+    <meta name="description" content="Trondheim Kommune Air Quality" />
+    <meta name="keywords" content="nbiot,nb-iot,trondheim kommune, air quality,iot" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:image" content="https://tkaq.nbiot.engineering/images/og_image.png" />
+    <meta name="twitter:title" content="Trondheim Kommune Air Quality" />
+    <meta name="twitter:description" content="Trondheim Kommune Air Quality" />
+    <meta name="twitter:site" content="@trondheim" />
+    <meta property="og:title" content="Trondheim Kommune Air Quality" />
+    <meta property="og:site_name" content="Trondheim Kommune Air Quality" />
+    <meta property="og:url" content="https://tkaq.nbiot.engineering" />
+    <meta property="og:image" content="https://tkaq.nbiot.engineering/images/og_image.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Trondheim Kommune Air Quality" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" />
+    <link
+      rel="preload"
+      href="/fonts/MaterialIcons-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/MaterialIcons-Regular.woff"
+      as="font"
+      type="font/woff"
+      crossorigin="anonymous"
+    />
+    <script>
+      window.tkaqVersion = "${ htmlWebpackPlugin.options.metadata.buildVersion }";
+    </script>
+    <style>
+      .splash-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transition: opacity 0.75s cubic-bezier(0.15, 0.99, 0.18, 1.01);
+        background: linear-gradient(45deg, #006bb5 0%, #007ace 100%);
+        opacity: 1;
+      }
+
+      .splash-container--fade-out {
+        opacity: 0;
+      }
+
+      .splash {
+        box-sizing: border-box;
+        margin: 10% 0 0 0;
+        font-family: Helvetica, Arial, sans-serif;
+        text-align: center;
+      }
+
+      .splash__message {
+        color: #fff;
+        font-size: 72px;
+        line-height: 72px;
+        text-transform: uppercase;
+      }
+
+      .splash__logo {
+        display: inline-block;
+        width: 100%;
+        max-width: 460px;
+        margin: 24px;
+      }
+    </style>
+    <link rel="icon" href="/favicon.ico" />
+    <title>
+      <%- htmlWebpackPlugin.options.metadata.title %>
+    </title>
+    <base href="<%- htmlWebpackPlugin.options.metadata.baseUrl %>" />
+    <!-- imported CSS are concatenated and added automatically -->
+  </head>
+
+  <body class="body">
+    <div aurelia-app="main" class="app"></div>
+    <div class="splash-container">
+      <div class="splash">
+        <div class="splash__message">
+          <%- htmlWebpackPlugin.options.metadata.title %>
+        </div>
+        <img class="splash__logo" src="/images/undraw_air_support.svg" alt="clean air" />
+      </div>
+    </div>
+    <% if (htmlWebpackPlugin.options.metadata.server) { %>
+    <!-- Webpack Dev Server reload -->
+    <script src="/webpack-dev-server.js"></script>
+    <% } %>
+  </body>
+</html>

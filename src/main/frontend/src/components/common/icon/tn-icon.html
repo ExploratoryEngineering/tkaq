@@ -1,0 +1,18 @@
+<template
+  class="
+  material-icons
+  tn-icon
+  ${ hasProp('colored') ? 'tn-icon--colored' : '' }
+  ${ hasProp('medium') ? 'tn-icon--medium' : '' }
+  ${ hasProp('small') ? 'tn-icon--small' : '' }
+  ${ hasProp('large') ? 'tn-icon--large' : '' }
+  ${ hasProp('huge') ? 'tn-icon--huge' : '' }
+  ${ hasProp('left') ? 'tn-icon--margin-right' : '' }
+  ${ hasProp('right') ? 'tn-icon--margin-left' : '' }
+  ${ hasProp('center') ? 'tn-icon--centered' : '' }
+  ${ hasProp('clickable') ? 'tn-icon--clickable' : '' }
+  ${ hasProp('noMargin') ? 'tn-icon--no-margin' : '' }
+  "
+>
+  <slot></slot>
+</template>

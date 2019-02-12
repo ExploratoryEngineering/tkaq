@@ -1,0 +1,36 @@
+/*
+	Copyright 2019 Telenor Digital AS
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+*/
+
+// tn-colors
+$color--white: #fff;
+$color--black: #000;
+
+$color--blue: #4285f4;
+$color--red: #f84315;
+$color--green: #4caf50;
+$color--yellow: #ffc107;
+$color--orange: #ff9800;
+
+$color--brand-blue: #055fa5;
+$color--brand-blue-dark: darken(#007ace, 2%);
+$color--brand-blue-darker: darken(#007ace, 5%);
+
+$color--google-grey-200: #eee;
+
+$color-grey-theme--lightest: #fff;
+$color-grey-theme--light: #fafafa;
+$color-grey-theme--dark: #eee;
+$color-grey-theme--darkest: #9e9e9e;

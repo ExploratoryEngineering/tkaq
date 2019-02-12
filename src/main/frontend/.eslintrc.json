@@ -1,0 +1,7 @@
+{
+  "extends": ["@telenorfrontend/telenor", "eslint-config-prettier"],
+  "rules": {
+    "comma-dangle": ["off", "always-multiline"],
+    "indent": ["off", 2]
+  }
+}

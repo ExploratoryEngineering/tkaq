@@ -1,0 +1,32 @@
+<template>
+  <tn-dialog>
+    <tn-dialog-header>
+      <h2 class="h2">Hooray! New version available!</h2>
+    </tn-dialog-header>
+    <tn-dialog-body>
+      <div class="help-dialog__content">
+        <figure>
+          <img
+            class="help-dialog__illustration"
+            alt="Celebration"
+            src="/images/undraw_celebration.svg"
+          />
+        </figure>
+        <tn-p>
+          High fives all around. A new version is out. What does it contain?
+          <b>What does it MEAN?</b>
+        </tn-p>
+        <tn-p>
+          Most likely a bunch of bug fixes, but hey, there might be some amazing new features
+          incoming as well. Who knows. If you click "Get me new things!" we will fetch the newest
+          version. If you were in the middle of something you can delay the update and refresh the
+          page later. Your choice!
+        </tn-p>
+      </div>
+    </tn-dialog-body>
+    <tn-dialog-footer>
+      <tn-button flat click.delegate="cancel()">I'll refresh later, promise</tn-button>
+      <tn-button raised primary click.delegate="ok()">Get me new things!</tn-button>
+    </tn-dialog-footer>
+  </tn-dialog>
+</template>

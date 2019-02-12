@@ -1,0 +1,14 @@
+<template
+  class="
+  tn-dialog
+  ${ hasProp('small') ? 'tn-dialog--small' : '' }
+  ${ hasProp('large') ? 'tn-dialog--large' : '' }
+  ${ hasProp('cover') ? 'tn-dialog--cover' : '' }
+  ${ hasProp('transparent') ? 'tn-dialog--transparent' : '' }
+"
+>
+  <require from="./tn-dialog.scss"></require>
+  <slot name="dialog-header"></slot>
+  <slot name="dialog-body"></slot>
+  <slot name="dialog-footer"></slot>
+</template>

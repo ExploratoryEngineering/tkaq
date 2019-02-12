@@ -1,0 +1,18 @@
+@import "variables/colors";
+@import "variables/grid";
+
+.tn-cookie-box {
+  display: block;
+  position: fixed;
+  right: $grid-size * 2;
+  bottom: 0;
+  background-color: #055fa5;
+  color: $color--white;
+  z-index: 1;
+
+  &__link {
+    display: inline-block;
+    padding: $grid-size;
+    cursor: pointer;
+  }
+}

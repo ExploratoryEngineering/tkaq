@@ -1,0 +1,37 @@
+{
+  "globals": {
+    "ts-jest": {
+      "tsConfig": "tsconfig.jest.json"
+    }
+  },
+  "verbose": false,
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "moduleDirectories": ["node_modules", "src"],
+  "transform": {
+    "^.+\\.(ts|tsx)$": "ts-jest"
+  },
+  "testRegex": "/src/.*\\.spec\\.(ts|js)$",
+  "setupFiles": ["<rootDir>/test/jest-pretest.ts"],
+  "moduleNameMapper": {
+    "^aurelia-(.*)": "<rootDir>/node_modules/aurelia-$1",
+    "^.+\\.(css|less|scss)$": "<rootDir>/test/mock/styleMock.js",
+    "Test/(.*)": "<rootDir>/test/$1",
+    "Helpers/(.*)": "helpers/$1",
+    "Components/(.*)": "components/$1",
+    "Services/(.*)": "services/$1",
+    "Dialogs/(.*)": "dialogs/$1",
+    "Models/(.*)": "models/$1"
+  },
+  "testEnvironment": "node",
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/**/*.{js,ts}",
+    "!**/*.spec.{js,ts}",
+    "!**/*.{d.ts}",
+    "!**/webpack.config.babel.js",
+    "!**/{test,dist,node_modules}/**"
+  ],
+  "coverageDirectory": "<rootDir>/test/coverage-jest",
+  "coverageReporters": ["json", "lcov", "text", "html"],
+  "testResultsProcessor": "./node_modules/jest-junit-reporter"
+}

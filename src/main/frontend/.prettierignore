@@ -1,0 +1,6 @@
+dist
+node_modules
+test/coverage-jest
+horde
+.chrome
+CHANGELOG.md

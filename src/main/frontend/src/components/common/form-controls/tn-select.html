@@ -1,0 +1,59 @@
+<template>
+  <div class="form-group__select-options" ref="inlineOptions">
+    <slot></slot>
+  </div>
+  <div
+    class="
+    form-group
+    ${hasProp('compact') ? 'form-group--compact' : ''}
+  "
+  >
+    <select
+      ref="selectElement"
+      id="${name}"
+      focus.bind="hasFocus"
+      attach-focus="${hasProp('focusElement') ? 'true' : 'false' }"
+      class="
+    form-group__input
+    ${hasValue ? 'form-group__input--has-data' : ''}
+    ${hasProp('compact') ? 'form-group__input--compact' : ''}
+  "
+      value.bind="value"
+    >
+      <option value.bind="option.id" repeat.for="option of values">${option.value}</option>
+    </select>
+    <label
+      if.bind="!hasProp('compact')"
+      for="${name}"
+      class="
+      form-group__select-label
+      ${hasFocus ? 'form-group__select-label--focus' : ''}
+      ${errorText ? 'form-group__select-label--error' : ''}
+      ${hasValue ? 'form-group__select-label--has-data' : ''}
+      ${isReadOnly ? 'form-group__select-label--readonly' : ''}
+    "
+      >${label}</label
+    >
+    <div
+      class="
+      form-group__focus-underline
+      ${hasFocus ? 'form-group__focus-underline--focus' : ''}
+      ${errorText ? 'form-group__focus-underline--error' : ''}
+      ${isReadOnly ? 'form-group__focus-underline--readonly' : ''}
+    "
+    ></div>
+  </div>
+  <div
+    if.bind="!hasProp('compact')"
+    class="
+    form-group__details-text-container
+    ${ hasFocus ? 'form-group__details-text-container--visible' : '' }
+    ${hasProp('compact') ? 'form-group__details-text-container--compact' : ''}
+  "
+  >
+    <span if.bind="helpText && (hasFocus || !errorText)" class="form-group__help-text"
+      >${helpText}</span
+    >
+    <span if.bind="errorText && !hasFocus" class="form-group__error-text">${errorText}</span>
+  </div>
+</template>

@@ -1,0 +1,80 @@
+/*
+	Copyright 2019 Telenor Digital AS
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+*/
+
+@import "variables/grid";
+@import "mixins/responsive";
+
+.tn-grid {
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include desktop {
+      margin-right: -$grid-gutter-size;
+      margin-left: -$grid-gutter-size;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    margin-right: auto;
+
+    @include desktop {
+      padding-right: $grid-gutter-size;
+      padding-left: $grid-gutter-size;
+    }
+
+    @include desktop {
+      &--2 {
+        width: 16.66666666%;
+      }
+
+      &--3 {
+        width: 25%;
+      }
+
+      &--4 {
+        width: 33.3333333%;
+      }
+
+      &--6 {
+        width: 50%;
+      }
+
+      &--8 {
+        width: 66.6666666%;
+      }
+
+      &--9 {
+        width: 75%;
+      }
+
+      &--12 {
+        width: 100%;
+      }
+    }
+
+    &--no-stretch {
+      align-items: flex-start;
+    }
+
+    &--no-flex {
+      display: block;
+    }
+  }
+}

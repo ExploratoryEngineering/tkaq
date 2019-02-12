@@ -1,0 +1,30 @@
+<template>
+  <require from="./not-found.scss"></require>
+  <section class="not-found">
+    <div class="not-found__content">
+      <h1 class="h1 not-found__header">
+        This is not the page you're looking for...
+      </h1>
+      <div class="not-found__container">
+        <div class="not-found__text">
+          <p class="not-found__paragraph">
+            Or perhaps it is. Anyway, it's not here unfortunately. My best guess? Try to go back or
+            simply go to the homepage.
+          </p>
+          <div class="not-found__actions">
+            <tn-button if.bind="hasBackNavigation" click.delegate="navigateBack()" primary raised
+              >Back to where you came from</tn-button
+            >
+          </div>
+        </div>
+        <figure class="not-found__illustration">
+          <img
+            class="not-found__illustration-image"
+            src="/images/undraw_empty.svg"
+            alt="Empty chairs and empty tables"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+</template>

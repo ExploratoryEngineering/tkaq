@@ -1,0 +1,20 @@
+<template class="data-filter">
+  <require from="./data-filter.scss"></require>
+  <require from="valueConverters/tagName"></require>
+  <label class="data-filter__date-label">
+    <tn-icon no-margin centered clickable>date_range</tn-icon>
+    <input type="date" class="data-filter__input" name="from" ref="rangeInputElement" />
+  </label>
+  <div class="data-filter__filter-controls">
+    <select class="data-filter__input-select" value.bind="filteredDeviceId">
+      <option value="*">All</option>
+      <option repeat.for="device of devices" value="${device.id}">${device | tagName}</option>
+    </select>
+    <tn-button flat click.delegate="toggleLive()"
+      >Live
+      <tn-icon right
+        >${isLive ? "radio_button_checked" : "radio_button_unchecked"}</tn-icon
+      ></tn-button
+    >
+  </div>
+</template>
