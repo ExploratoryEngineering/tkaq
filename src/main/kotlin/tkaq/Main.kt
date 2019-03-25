@@ -51,9 +51,8 @@ fun main(args: Array<String>) {
                 get(CollectionController::getCollections)
                 path("/:collection-id") {
                     get(CollectionController::getCollection)
-                    ws("/stream") {
-                        it.onConnect { wsSession -> WebSocketHandler.onWebSocketConnect(wsSession.pathParam("collection-id"), wsSession) }
-                        it.onClose { wsSession, _, _ -> WebSocketHandler.onWebsocketDisconnect(wsSession.pathParam("collection-id"), wsSession) }
+                    path("/stream") {
+                        ws (WebSocketHandler::handle)
                     }
 
                     path("data") {
