@@ -46,6 +46,12 @@ fun main(args: Array<String>) {
     }
 
     app.routes {
+        before("*") { ctx ->
+        if (ctx.header("x-forwarded-proto") == "http") {
+            val queryString = ctx.queryString()?.let { query -> "?$query" } ?: ""
+            ctx.redirect("https://${ctx.header("host")}${ctx.path()}$queryString", 301)
+        }
+    }
         get("hc") {
             it.status(200).result("pong")
         }
@@ -57,11 +63,9 @@ fun main(args: Array<String>) {
                     path("/stream") {
                         ws (WebSocketHandler::handle)
                     }
-
                     path("data") {
                         get(DataController::getDataForCollection)
                     }
-
                     path("/devices") {
                         get(DevicesController::getDevicesForCollection)
                         path("/:device-id") {
