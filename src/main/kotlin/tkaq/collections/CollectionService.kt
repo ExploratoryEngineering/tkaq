@@ -11,7 +11,6 @@ import tkaq.DB
 import tkaq.NBIoTClient
 import tkaq.TKAQ_LOG
 import tkaq.models.TKAQDataPoint
-import tkaq.transformer.DeviceData
 import tkaq.websocket.WebSocketHandler
 
 
@@ -63,7 +62,7 @@ object CollectionService {
 
             dataPoints.addAll(clientDataPoints.fold(ArrayList()) { acc, dataPoint: OutputDataMessage ->
                 try {
-                    acc.add(DeviceData.toTKAQDataPoint(dataPoint))
+                    acc.add(TKAQDataPoint.fromOutputMessage(dataPoint))
                 } catch (_: IllegalArgumentException) {
                     TKAQ_LOG.warn("Could not parse to TKAQ datapoint")
                 }
@@ -90,7 +89,7 @@ object CollectionService {
             handler.onClose { code, reason -> TKAQ_LOG.debug("Closed with code $code due to $reason") }
             handler.onMessage {
                 try {
-                    val tkaqDataPoint = DeviceData.toTKAQDataPoint(it)
+                    val tkaqDataPoint = TKAQDataPoint.fromOutputMessage(it)
 
                     DB.addDataPoint(tkaqDataPoint)
                     WebSocketHandler.broadcastTKAQDataPoint(tkaqDataPoint)

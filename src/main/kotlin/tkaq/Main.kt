@@ -1,7 +1,6 @@
 package tkaq
 
 import com.fasterxml.jackson.databind.ObjectMapper
-
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.telenordigital.nbiot.*
@@ -41,7 +40,7 @@ fun main(args: Array<String>) {
     TKAQ_LOG.debug(collections.map { it.tags["name"] }.toString())
 
     val app = Javalin.create().apply {
-        port(Integer.parseInt(Config.port))
+        port(Config.port.toInt())
         enableStaticFiles("/public")
         enableSinglePageMode("/", "/public/index.html")
         enableCorsForAllOrigins()
