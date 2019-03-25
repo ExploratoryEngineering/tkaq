@@ -6,6 +6,7 @@ import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.postgres.PostgresPlugin
 import org.jdbi.v3.sqlite3.SQLitePlugin
 import tkaq.Config
+import tkaq.TKAQ_LOG
 import java.time.Instant
 
 import tkaq.models.Collection
