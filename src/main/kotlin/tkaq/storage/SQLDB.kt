@@ -24,13 +24,13 @@ object SQLDB : DBInterface {
             Config.dbConnectionString.contains("postgresql") -> {
                 // Explicitly loading postgresql driver to ensure runtime finds it in fat jar
                 Class.forName("org.postgresql.Driver")
-                println("Using postgresql")
+                TKAQ_LOG.debug("Using postgresql")
                 Jdbi.create(Config.dbConnectionString).installPlugin(PostgresPlugin())
             }
             Config.dbConnectionString.contains("sqlite") -> {
                 // Explicitly loading sqlite driver to ensure runtime finds it in fat jar
                 Class.forName("org.sqlite.JDBC")
-                println("Using sqlite. Connection ${Config.dbConnectionString}")
+                TKAQ_LOG.debug("Using sqlite. Connection ${Config.dbConnectionString}")
                 Jdbi.create(Config.dbConnectionString).installPlugin(SQLitePlugin())
             }
             else -> throw IllegalArgumentException("SQL Connection string provided is not supported")
@@ -240,7 +240,7 @@ object SQLDB : DBInterface {
     }
 
     private fun initDB(dbConnection: Jdbi) {
-        println("Setting up database...")
+        TKAQ_LOG.debug("Setting up database...")
         dbConnection.useHandle<Exception> { handle ->
             handle.execute("CREATE TABLE IF NOT EXISTS collections(id TEXT PRIMARY KEY, teamId TEXT, tags TEXT, added TIMESTAMP DEFAULT CURRENT_TIMESTAMP)")
 
@@ -265,6 +265,6 @@ object SQLDB : DBInterface {
             )
             handle.execute("CREATE INDEX IF NOT EXISTS idx_tkaq_data_timestamp ON tkaq_data(timestamp)")
         }
-        println("SQL init setup complete!")
+        TKAQ_LOG.debug("SQL init setup complete!")
     }
 }

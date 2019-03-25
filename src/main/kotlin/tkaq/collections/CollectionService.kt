@@ -6,18 +6,16 @@ import org.eclipse.jetty.websocket.api.CloseStatus
 import org.eclipse.jetty.websocket.client.WebSocketClient
 import java.time.Instant
 import java.util.*
-import org.slf4j.LoggerFactory
 
 import tkaq.DB
 import tkaq.NBIoTClient
+import tkaq.TKAQ_LOG
 import tkaq.models.TKAQDataPoint
 import tkaq.transformer.DeviceData
 import tkaq.websocket.WebSocketHandler
 
 
 object CollectionService {
-    private var LOG = LoggerFactory.getLogger(CollectionService::class.java)
-
     fun fetchAllDataForCollection(collectionId: String): ArrayList<TKAQDataPoint> {
         val tkaqCollection = DB.retrieveCollectionById(collectionId)
         var dataPoints: ArrayList<TKAQDataPoint> = ArrayList()
@@ -28,7 +26,7 @@ object CollectionService {
         var hasMore = true
 
         if (tkaqCollection != null) {
-            println("Collection exists, filling in missing data.")
+            TKAQ_LOG.debug("Collection exists, filling in missing data.")
             val tkaqDataPoint = DB.retrieveDataPointsForCollection(
                     collectionId = collectionId,
                     limit = 1
@@ -39,9 +37,9 @@ object CollectionService {
                 sinceLimit = tkaqDataPoint.first().timestamp.plusMillis(1L)
             }
 
-            println("The timestamp for last data is ${sinceLimit.toEpochMilli()}")
+            TKAQ_LOG.debug("The timestamp for last data is ${sinceLimit.toEpochMilli()}")
         } else {
-            println("Couldn't find collection $collectionId. Registering new collection and pulling down all data.")
+            TKAQ_LOG.debug("Couldn't find collection $collectionId. Registering new collection and pulling down all data.")
             val collection = NBIoTClient.collection(collectionId)
 
             if (collection.id() != null) {
@@ -51,7 +49,7 @@ object CollectionService {
                         collection.tags()!!
                 )
             } else {
-                println("Collection '$collectionId' could not be found in Horde. Please double check that you have access.")
+                TKAQ_LOG.warn("Collection '$collectionId' could not be found in Horde. Please double check that you have access.")
             }
         }
 
@@ -67,7 +65,7 @@ object CollectionService {
                 try {
                     acc.add(DeviceData.toTKAQDataPoint(dataPoint))
                 } catch (_: IllegalArgumentException) {
-                    println("Could not parse to TKAQ datapoint")
+                    TKAQ_LOG.warn("Could not parse to TKAQ datapoint")
                 }
                 acc
             })
@@ -80,7 +78,7 @@ object CollectionService {
             }
         }
 
-        println("Adding ${dataPoints.size} data points")
+        TKAQ_LOG.debug("Adding ${dataPoints.size} data points")
         DB.addDataPoints(dataPoints)
 
         return dataPoints
@@ -88,8 +86,8 @@ object CollectionService {
 
     fun streamDataFromCollection(collectionId: String): WebSocketClient {
         return NBIoTClient.collectionOutput(collectionId) { handler ->
-            handler.onConnect { session -> LOG.debug("Connected WebSocket session for $collectionId @${session.localAddress}") }
-            handler.onClose { code, reason -> LOG.debug("Closed with code $code due to $reason") }
+            handler.onConnect { session -> TKAQ_LOG.debug("Connected WebSocket session for $collectionId @${session.localAddress}") }
+            handler.onClose { code, reason -> TKAQ_LOG.debug("Closed with code $code due to $reason") }
             handler.onMessage {
                 try {
                     val tkaqDataPoint = DeviceData.toTKAQDataPoint(it)
@@ -97,13 +95,13 @@ object CollectionService {
                     DB.addDataPoint(tkaqDataPoint)
                     WebSocketHandler.broadcastTKAQDataPoint(tkaqDataPoint)
 
-                    println("Added data point from device ${it.device().id()}")
-                } catch (_: IllegalArgumentException) {
-                    println("Could not map stream data to TKAQ data point")
+                    TKAQ_LOG.debug("Added data point from device ${it.device().id()}")
+                } catch (ex: IllegalArgumentException) {
+                    TKAQ_LOG.warn("Could not map stream data to TKAQ data point", ex)
                 }
             }
             handler.onError { session, throwable ->
-                LOG.error("Received error from websocket.", throwable)
+                TKAQ_LOG.error("Received error from websocket.", throwable)
                 if (session.isOpen) {
                     session.close(CloseStatus(1006, "Got error from WebSocket"))
                     session.disconnect()
@@ -116,8 +114,7 @@ object CollectionService {
     private fun reconnectCollectionStream(collectionId: String) {
         // TODO: Add backoff in case things are really broken.
         CollectionService.fetchAllDataForCollection(collectionId)
-        LOG.debug("Reconnecting WebSocket for collection $collectionId")
-        println("Reconnecting WebSocket for collection $collectionId")
+        TKAQ_LOG.debug("Reconnecting WebSocket for collection $collectionId")
         streamDataFromCollection(collectionId)
     }
 }

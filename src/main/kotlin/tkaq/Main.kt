@@ -9,7 +9,9 @@ import io.javalin.JavalinEvent
 import io.javalin.apibuilder.ApiBuilder.*
 import io.javalin.json.JavalinJackson
 import org.eclipse.jetty.websocket.client.WebSocketClient
+import org.slf4j.LoggerFactory
 import sun.misc.Signal
+import kotlin.system.exitProcess
 
 import tkaq.collections.CollectionController
 import tkaq.collections.CollectionService
@@ -18,8 +20,8 @@ import tkaq.devices.DevicesController
 import tkaq.storage.DBInterface
 import tkaq.storage.SQLDB
 import tkaq.websocket.WebSocketHandler
-import kotlin.system.exitProcess
 
+val TKAQ_LOG = LoggerFactory.getLogger("TKAQ_APP")
 val NBIoTClient: Client = Client(Config.endpoint, Config.hordeApiKey)
 val DB: DBInterface = SQLDB
 val HordeWebsocket: WebSocketClient = CollectionService.streamDataFromCollection(Config.collectionId)
@@ -34,8 +36,8 @@ fun main(args: Array<String>) {
 
     val collections = DB.retrieveCollections()
 
-    println("All collections available (${collections.size}):")
-    println(collections.map { it.tags["name"] })
+    TKAQ_LOG.debug("All collections available (${collections.size}):")
+    TKAQ_LOG.debug(collections.map { it.tags["name"] }.toString())
 
     val app = Javalin.create().apply {
         port(Integer.parseInt(Config.port))
@@ -81,9 +83,9 @@ fun main(args: Array<String>) {
     }
 
     app.event(JavalinEvent.SERVER_STOPPING) {
-        println("Closing horde websocket")
+        TKAQ_LOG.debug("Closing horde websocket")
         HordeWebsocket.stop()
-        println("Closing all connected websockets")
+        TKAQ_LOG.debug("Closing all connected websockets")
         WebSocketHandler.closeAndClearAllWebSockets()
     }
 

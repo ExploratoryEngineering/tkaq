@@ -5,6 +5,7 @@ import io.javalin.websocket.WsHandler
 import io.javalin.websocket.WsSession
 import org.eclipse.jetty.websocket.api.CloseStatus
 import org.eclipse.jetty.websocket.api.StatusCode
+import tkaq.TKAQ_LOG
 import tkaq.models.TKAQDataPoint
 import java.util.concurrent.ConcurrentHashMap
 
@@ -31,7 +32,7 @@ object WebSocketHandler {
     }
 
     private fun onWebSocketConnect(collectionId: String, wsSession: WsSession) {
-        println("Connected a websocket to collection $collectionId")
+        TKAQ_LOG.debug("Connected a websocket to collection $collectionId")
         val sessionList = sessions.getOrDefault(collectionId, HashSet())
 
         sessionList.add(wsSession)
@@ -39,7 +40,7 @@ object WebSocketHandler {
     }
 
     private fun onWebsocketDisconnect(collectionId: String, wsSession: WsSession) {
-        println("Disconnected a websocket from collection $collectionId")
+        TKAQ_LOG.debug("Disconnected a websocket from collection $collectionId")
         val sessionList = sessions.getOrDefault(collectionId, HashSet())
 
         sessionList.remove(wsSession)
