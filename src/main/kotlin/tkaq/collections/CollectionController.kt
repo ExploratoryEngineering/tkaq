@@ -11,15 +11,13 @@ import tkaq.currentUser
 
 object CollectionController {
     fun getCollection(ctx: Context) {
-        val collection = DB.retrieveCollectionById(ctx.validatedPathParam("collection-id").getOrThrow())
+        val collection = DB.retrieveCollectionById(ctx.pathParam("collection-id"))
                 ?: throw NotFoundResponse()
-        ctx.status(200)
         ctx.json(collection)
     }
 
     fun getCollections(ctx: Context) {
         val collections = DB.retrieveCollections()
-        ctx.status(200)
         ctx.json(collections)
     }
 }

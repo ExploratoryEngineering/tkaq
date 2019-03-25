@@ -8,7 +8,7 @@ import tkaq.models.Device
 
 object DevicesController {
     fun getDevicesForCollection(ctx: Context) {
-        val devices = NBIoTClient.devices(ctx.validatedPathParam("collection-id").getOrThrow())
+        val devices = NBIoTClient.devices(ctx.pathParam("collection-id"))
                 ?: throw NotFoundResponse()
         ctx.status(200)
 
@@ -26,8 +26,8 @@ object DevicesController {
 
     fun getDeviceInCollection(ctx: Context) {
         val device = NBIoTClient.device(
-                ctx.validatedPathParam("collection-id").getOrThrow(),
-                ctx.validatedPathParam("device-id").getOrThrow()) ?: throw NotFoundResponse()
+                ctx.pathParam("collection-id"),
+                ctx.pathParam("device-id")) ?: throw NotFoundResponse()
 
         ctx.json(Device(
                 id = device.id()!!,
