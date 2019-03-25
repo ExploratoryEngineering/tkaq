@@ -4,6 +4,8 @@ A simple PoC for Trondheim Kommune showing air quality data from sensors mounted
 
 Written in Kotlin using [Javalin](https://javalin.io) for the backend and [Aurelia](https://aurelia.io) for the frontend.
 
+![TKAQ Dashboard Demo](./tkaq_demo.gif)
+
 ## Prerequesites
 
 ### Backend
