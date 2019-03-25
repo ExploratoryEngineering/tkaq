@@ -6,6 +6,7 @@ Written in Kotlin using [Javalin](https://javalin.io) for the backend and [Aurel
 
 ![TKAQ Dashboard Demo](./tkaq_demo.gif)
 
+
 ## Prerequesites
 
 ### Backend
@@ -26,7 +27,7 @@ To package a executable jar run
 mvn clean package
 ```
 
-This will build the frontend and backend, bundle them into a "fat jar", which will be possible to run wherever you have a JRE installed.
+This will build the frontend and backend, bundle them into a "fat jar", which will be possible to run wherever you have a JRE installed. 
 
 ## Configuration
 
@@ -51,6 +52,8 @@ The following parameters are available for configuration
 ### Backend
 
 Pick your favorite IDE and set the Main class to be Main.kt and you're on your way. It will default to run Javalin on port 7000 with the configuration given (see [configuration](#configuration)). You should see the application set up the DB and from there the APIs should be ready to use.
+
+Note: Before you can run the application in dev mode you need to have a index.html present in the public fold under resources. Just run a simple `mvn clean install` beforehand and a snapshot of the frontend will be built and added to the resources folder. 
 
 ### Frontend
 
