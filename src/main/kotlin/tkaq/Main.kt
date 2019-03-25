@@ -1,5 +1,6 @@
 package tkaq
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.telenordigital.nbiot.*
@@ -23,8 +24,10 @@ val DB = SQLDB
 val HordeWebsocket: WebSocketClient = CollectionService.streamDataFromCollection(Config.collectionId)
 
 fun main(args: Array<String>) {
-    JavalinJackson.getObjectMapper().registerModule(JavaTimeModule())
-    JavalinJackson.getObjectMapper().configure(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS, false)
+    JavalinJackson.configure(ObjectMapper().apply {
+        registerModule(JavaTimeModule())
+        configure(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS, false)
+    })
 
     CollectionService.fetchAllDataForCollection(Config.collectionId)
 
