@@ -10,8 +10,6 @@ object DevicesController {
     fun getDevicesForCollection(ctx: Context) {
         val devices = NBIoTClient.devices(ctx.pathParam("collection-id"))
                 ?: throw NotFoundResponse()
-        ctx.status(200)
-
 
         ctx.json(devices.map {
             Device.fromDto(it)
