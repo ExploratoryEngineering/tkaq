@@ -18,7 +18,7 @@ import tkaq.websocket.WebSocketHandler
 object CollectionService {
     fun fetchAllDataForCollection(collectionId: String): ArrayList<TKAQDataPoint> {
         val tkaqCollection = DB.retrieveCollectionById(collectionId)
-        var dataPoints: ArrayList<TKAQDataPoint> = ArrayList()
+        val dataPoints: ArrayList<TKAQDataPoint> = ArrayList()
 
         val fetchLimit = 10000
         var sinceLimit = Date(0).toInstant()

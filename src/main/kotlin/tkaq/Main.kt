@@ -1,6 +1,7 @@
 package tkaq
 
 import com.fasterxml.jackson.databind.ObjectMapper
+
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.telenordigital.nbiot.*
@@ -49,11 +50,11 @@ fun main(args: Array<String>) {
 
     app.routes {
         before("*") { ctx ->
-        if (ctx.header("x-forwarded-proto") == "http") {
-            val queryString = ctx.queryString()?.let { query -> "?$query" } ?: ""
-            ctx.redirect("https://${ctx.header("host")}${ctx.path()}$queryString", 301)
+            if (ctx.header("x-forwarded-proto") == "http") {
+                val queryString = ctx.queryString()?.let { query -> "?$query" } ?: ""
+                ctx.redirect("https://${ctx.header("host")}${ctx.path()}$queryString", 301)
+            }
         }
-    }
         get("hc") {
             it.status(200).result("pong")
         }
@@ -63,7 +64,7 @@ fun main(args: Array<String>) {
                 path("/:collection-id") {
                     get(CollectionController::getCollection)
                     path("/stream") {
-                        ws (WebSocketHandler::handle)
+                        ws(WebSocketHandler::handle)
                     }
                     path("data") {
                         get(DataController::getDataForCollection)
