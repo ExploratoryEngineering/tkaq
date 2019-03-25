@@ -1,0 +1,7 @@
+{
+  "HORDE_API_KEY": "YOUR_HORDE_API_KEY",
+  "PORT": "7000",
+  "TKAQ_COLLECTION": "17dh0cf43jfi2f",
+  "TKAQ_DB_CONNECTION_STRING": "jdbc:sqlite:tkaq.db",
+  "TKAQ_HORDE_ENDPOINT": "https://api.nbiot.engineering"
+}

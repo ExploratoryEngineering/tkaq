@@ -30,7 +30,7 @@ This will build the frontend and backend, bundle them into a "fat jar", which wi
 
 To configure the tkaq-app you can choose to either provide
 
-1. a `config.json` in the runtime folder
+1. a `config.json` in the runtime folder (see `config.example.json` for an example of a config file)
 2. add system environment variables (recommended)
 3. or rely on the the defaults.
 
