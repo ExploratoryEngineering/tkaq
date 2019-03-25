@@ -43,8 +43,7 @@ fun main(args: Array<String>) {
 
     app.routes {
         get("hc") {
-            it.res.status = 200
-            it.result("pong")
+            it.status(200).result("pong")
         }
         path("api/v1") {
             path("collections") {
