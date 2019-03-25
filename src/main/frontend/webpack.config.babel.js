@@ -188,6 +188,10 @@ module.exports = ({
         to: "version.json",
       },
       {
+        from: "fonts/",
+        to: "fonts/",
+      },
+      {
         from: "images/",
         to: "images/",
       },
