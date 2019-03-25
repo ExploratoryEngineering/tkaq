@@ -15,12 +15,13 @@ import tkaq.collections.CollectionController
 import tkaq.collections.CollectionService
 import tkaq.data.DataController
 import tkaq.devices.DevicesController
+import tkaq.storage.DBInterface
 import tkaq.storage.SQLDB
 import tkaq.websocket.WebSocketHandler
 import kotlin.system.exitProcess
 
-val NBIoTClient = Client(Config.endpoint, Config.hordeApiKey)
-val DB = SQLDB
+val NBIoTClient: Client = Client(Config.endpoint, Config.hordeApiKey)
+val DB: DBInterface = SQLDB
 val HordeWebsocket: WebSocketClient = CollectionService.streamDataFromCollection(Config.collectionId)
 
 fun main(args: Array<String>) {
