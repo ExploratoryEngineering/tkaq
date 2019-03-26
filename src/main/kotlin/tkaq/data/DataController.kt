@@ -11,9 +11,9 @@ data class DataQuery(
 )
 
 fun Context.dataQuery() = DataQuery(
-        fromTimestamp = this.validatedQueryParam("since", "0").asLong().getOrThrow(),
-        toTimestamp = this.validatedQueryParam("until", Instant.now().toEpochMilli().toString()).asLong().getOrThrow(),
-        limit = this.validatedQueryParam("limit", "255").asInt().getOrThrow()
+        fromTimestamp = this.queryParam<Long>("since", "0").get(),
+        toTimestamp = this.queryParam<Long>("until", Instant.now().toEpochMilli().toString()).get(),
+        limit = this.queryParam<Int>("limit", "255").get()
 )
 
 
