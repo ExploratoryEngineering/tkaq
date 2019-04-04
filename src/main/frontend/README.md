@@ -108,4 +108,4 @@ npm start test.dependencies
 
 Run `npm start build`
 
-This will build an optimized build for production purposes and output to the `dist` folder.
+This will build an optimized build for production purposes and output to the `src/main/resources/public` folder.
