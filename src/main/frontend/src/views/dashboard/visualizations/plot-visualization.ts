@@ -32,14 +32,18 @@ export class PlotVisualization {
       showline: false,
       fixedrange: true,
     },
-    // autosize: true,
+    autosize: true,
     margin: {
       t: 20,
       r: 35,
       b: 50,
       l: 35,
+      pad: 0,
     },
-    legend: { orientation: "h" },
+    legend: {
+      orientation: "h",
+      y: 140,
+    },
   };
 
   constructor(private bindingEngine: BindingEngine, private eventAggregator: EventAggregator) {}
