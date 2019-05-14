@@ -1,10 +1,11 @@
 # tkaq
 
-A simple PoC for Trondheim Kommune showing air quality data from sensors mounted on several buildings and cars across Trondheim municipality.
+A simple PoC for Trondheim Kommune showing air quality data from sensors mounted on several buildings and cars across Trondheim municipality. For a bit of a back story to the app check out our [blog](https://blog.exploratory.engineering/post/where-the-air-is-crisp/).
 
 Written in Kotlin using [Javalin](https://javalin.io) for the backend and [Aurelia](https://aurelia.io) for the frontend.
 
 ![TKAQ Dashboard Demo](./tkaq_demo.gif)
+
 
 
 ## Prerequesites
