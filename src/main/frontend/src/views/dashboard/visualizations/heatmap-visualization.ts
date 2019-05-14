@@ -27,8 +27,14 @@ declare module "leaflet" {
 export class HeatmapVisualization {
   @bindable tkaqDataPoints: TKAQDataPoint[] = [];
 
-  @bindable co2Range: number = 2250;
+  @bindable range: number = 2250;
   @bindable filteredDeviceId: string = "*";
+
+  @bindable title: string = "Heatmap of CO2 Equivalents ppm";
+  @bindable dataKey: string = "co2Equivalents";
+  @bindable dataMin: string = "350";
+  @bindable dataMax: string = "5000";
+  @bindable dataName: string = "ppm";
 
   map: L.Map;
   mapHeatLayer: L.HeatLayer;
@@ -63,7 +69,7 @@ export class HeatmapVisualization {
     this.createHeatMapLayer();
   }
 
-  co2RangeChanged() {
+  rangeChanged() {
     this.updateHeatmapLayer();
   }
 
@@ -89,15 +95,12 @@ export class HeatmapVisualization {
         .filter((dataPoint) => {
           return (
             (this.filteredDeviceId === "*" || this.filteredDeviceId === dataPoint.deviceId) &&
-            dataPoint.co2Equivalents > this.co2Range - 500
+            dataPoint[this.dataKey] >
+              this.range - (parseInt(this.dataMax, 10) - parseInt(this.dataMin, 10)) / 10
           );
         })
         .map((dataPoint) => {
-          return [
-            dataPoint.latitude,
-            dataPoint.longitude,
-            dataPoint.co2Equivalents / this.co2Range,
-          ];
+          return [dataPoint.latitude, dataPoint.longitude, dataPoint[this.dataKey] / this.range];
         }),
     );
     this.mapHeatLayer.redraw();
@@ -113,15 +116,12 @@ export class HeatmapVisualization {
         .filter((dataPoint) => {
           return (
             (this.filteredDeviceId === "*" || this.filteredDeviceId === dataPoint.deviceId) &&
-            dataPoint.co2Equivalents > this.co2Range - 500
+            dataPoint[this.dataKey] >
+              this.range - (parseInt(this.dataMax, 10) - parseInt(this.dataMin, 10)) / 10
           );
         })
         .map((dataPoint) => {
-          return [
-            dataPoint.latitude,
-            dataPoint.longitude,
-            dataPoint.co2Equivalents / this.co2Range,
-          ];
+          return [dataPoint.latitude, dataPoint.longitude, dataPoint[this.dataKey] / this.range];
         }),
       { radius: 25 },
     ).addTo(this.map);

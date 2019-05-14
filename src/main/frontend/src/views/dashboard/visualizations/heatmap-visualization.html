@@ -2,13 +2,15 @@
   <require from="./heatmap-visualization.scss"></require>
   <tn-card>
     <tn-card-header>
-      <tn-card-title>Heatmap of CO2 Equivalents ppm</tn-card-title>
+      <tn-card-title>${title}</tn-card-title>
     </tn-card-header>
     <tn-card-body no-padding>
       <div class="heatmap-visualization__map-element" ref="mapElement"></div>
     </tn-card-body>
     <tn-card-actions>
-      Threshold: <input type="range" value.bind="co2Range" min="350" max="5000" /> ${co2Range}ppm
+      Threshold:
+      <input type="range" min.bind="dataMin" max.bind="dataMax" value.bind="range" />
+      ${range}${dataName}
     </tn-card-actions>
   </tn-card>
 </template>
