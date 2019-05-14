@@ -25,7 +25,27 @@
     </tn-grid-row>
     <tn-grid-row>
       <tn-grid-item grid-size="12">
-        <heatmap-visualization tkaq-data-points.bind="tkaqDataPoints"></heatmap-visualization>
+        <heatmap-visualization
+          title="Heatmap of CO2 Equivalents ppm"
+          data-key="co2Equivalents"
+          data-name="ppm"
+          data-min="350"
+          data-max="5000"
+          tkaq-data-points.bind="tkaqDataPoints"
+        ></heatmap-visualization>
+      </tn-grid-item>
+    </tn-grid-row>
+    <tn-grid-row>
+      <tn-grid-item grid-size="12">
+        <heatmap-visualization
+          title="Heatmap of PM10"
+          data-key="pm10"
+          data-name="µg/m3"
+          data-min="1"
+          data-max="150"
+          range="10"
+          tkaq-data-points.bind="tkaqDataPoints"
+        ></heatmap-visualization>
       </tn-grid-item>
     </tn-grid-row>
     <tn-grid-row>
@@ -81,6 +101,7 @@
               devices.bind="devices"
               tkaq-data-points.bind="tkaqDataPoints"
               data-key="vocEquivalents"
+              logarithmic="true"
             ></plot-visualization>
           </tn-card-body>
         </tn-card>
