@@ -15,6 +15,7 @@ export class PlotVisualization {
   @bindable title: string = "Temperature (celsius)";
   @bindable dataKey: string = "temperature";
   @bindable filteredDeviceId: string = "*";
+  @bindable logarithmic: string | boolean = false;
 
   subscriptions: Subscription[] = [];
 
@@ -27,6 +28,7 @@ export class PlotVisualization {
       zeroline: false,
     },
     yaxis: {
+      type: "default",
       showline: false,
       fixedrange: true,
     },
@@ -43,6 +45,10 @@ export class PlotVisualization {
   constructor(private bindingEngine: BindingEngine, private eventAggregator: EventAggregator) {}
 
   bind() {
+    if (this.logarithmic) {
+      this.plotLayout.yaxis.type = "log";
+    }
+
     this.subscriptions.push(
       this.bindingEngine.collectionObserver(this.tkaqDataPoints).subscribe(() => {
         this.tkaqDataPointsChanged();
