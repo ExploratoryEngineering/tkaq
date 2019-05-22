@@ -14,7 +14,6 @@ export class PlotVisualization {
 
   @bindable title: string = "Temperature (celsius)";
   @bindable dataKey: string = "temperature";
-  @bindable filteredDeviceId: string = "*";
   @bindable logarithmic: string | boolean = false;
 
   subscriptions: Subscription[] = [];
@@ -86,13 +85,11 @@ export class PlotVisualization {
   private async createPlot() {
     const groupedDataPoints: { [deviceId: string]: TKAQDataPoint[] } = this.tkaqDataPoints.reduce(
       (acc, datapoint) => {
-        if (this.filteredDeviceId === "*" || this.filteredDeviceId === datapoint.deviceId) {
-          if (!acc[datapoint.deviceId]) {
-            acc[datapoint.deviceId] = [];
-          }
-
-          acc[datapoint.deviceId].push(datapoint);
+        if (!acc[datapoint.deviceId]) {
+          acc[datapoint.deviceId] = [];
         }
+
+        acc[datapoint.deviceId].push(datapoint);
 
         return acc;
       },
