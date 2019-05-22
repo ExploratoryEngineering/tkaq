@@ -21,13 +21,6 @@ import { Aurelia, LogManager } from "aurelia-framework";
 import { ConsoleAppender } from "aurelia-logging-console";
 import { PLATFORM } from "aurelia-pal";
 
-// Promise polyfill
-import * as Bluebird from "bluebird";
-Bluebird.config({
-  warnings: false,
-  longStackTraces: false,
-});
-
 export async function configure(aurelia: Aurelia) {
   LogManager.addAppender(new ConsoleAppender());
   if (PRODUCTION) {

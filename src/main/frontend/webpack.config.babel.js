@@ -119,8 +119,6 @@ module.exports = ({
       },
       { test: /\.html$/i, loader: "html-loader" },
       { test: /\.ts$/i, loader: "ts-loader" },
-      // use Bluebird as the global Promise implementation:
-      { test: /[/\\]node_modules[/\\]bluebird[/\\].+\.js$/, loader: "expose-loader?Promise" },
       // embed small images and fonts as Data Urls and larger ones as files:
       { test: /\.(png|gif|jpg|cur)$/i, loader: "url-loader", options: { limit: 8192 } },
       {
@@ -152,9 +150,6 @@ module.exports = ({
   plugins: [
     new AureliaPlugin({
       features: { svg: true, unparser: false, polyfills: "es2015" },
-    }),
-    new ProvidePlugin({
-      Promise: "bluebird",
     }),
     new HtmlWebpackPlugin({
       template: "index.ejs",
