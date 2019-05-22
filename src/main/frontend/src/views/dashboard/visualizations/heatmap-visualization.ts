@@ -34,7 +34,6 @@ export class HeatmapVisualization {
   @bindable tkaqDataPoints: TKAQDataPoint[] = [];
 
   @bindable range: number = 2250;
-  @bindable filteredDeviceId: string = "*";
 
   @bindable title: string = "Heatmap of CO2 Equivalents ppm";
   @bindable dataKey: string = "co2Equivalents";
@@ -101,9 +100,8 @@ export class HeatmapVisualization {
       this.tkaqDataPoints
         .filter((dataPoint) => {
           return (
-            (this.filteredDeviceId === "*" || this.filteredDeviceId === dataPoint.deviceId) &&
             dataPoint[this.dataKey] >
-              this.range - (parseInt(this.dataMax, 10) - parseInt(this.dataMin, 10)) / 10
+            this.range - (parseInt(this.dataMax, 10) - parseInt(this.dataMin, 10)) / 10
           );
         })
         .map((dataPoint) => {
@@ -122,9 +120,8 @@ export class HeatmapVisualization {
       this.tkaqDataPoints
         .filter((dataPoint) => {
           return (
-            (this.filteredDeviceId === "*" || this.filteredDeviceId === dataPoint.deviceId) &&
             dataPoint[this.dataKey] >
-              this.range - (parseInt(this.dataMax, 10) - parseInt(this.dataMin, 10)) / 10
+            this.range - (parseInt(this.dataMax, 10) - parseInt(this.dataMin, 10)) / 10
           );
         })
         .map((dataPoint) => {
