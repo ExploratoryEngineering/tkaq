@@ -1,6 +1,8 @@
 import { Subscription } from "aurelia-event-aggregator";
 import { autoinject, bindable, BindingEngine } from "aurelia-framework";
 import * as L from "leaflet";
+import "leaflet-fullscreen";
+import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 import "leaflet.heat";
 import { TKAQDataPoint } from "Models/Device";
 
@@ -21,6 +23,10 @@ declare module "leaflet" {
     _animateZoom(a: any): void;
   }
   function heatLayer(a: any, b: any): any;
+
+  interface FullscreenMapOptions extends L.MapOptions {
+    fullscreenControl: boolean;
+  }
 }
 
 @autoinject
@@ -60,7 +66,8 @@ export class HeatmapVisualization {
     this.map = L.map(this.mapElement, {
       center: [63.410774, 10.45424],
       zoom: 10,
-    });
+      fullscreenControl: true,
+    } as L.FullscreenMapOptions);
 
     L.tileLayer("https://{s}.tile.osm.org/{z}/{x}/{y}.png", {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
