@@ -3,6 +3,7 @@
   <require from="./stats/stats-card"></require>
   <require from="./visualizations/plot-visualization"></require>
   <require from="./visualizations/heatmap-visualization"></require>
+  <require from="./visualizations/map-path-visualization"></require>
   <tn-grid>
     <tn-grid-row>
       <tn-grid-item grid-size="12">
@@ -46,6 +47,14 @@
           range="10"
           tkaq-data-points.bind="tkaqDataPoints"
         ></heatmap-visualization>
+      </tn-grid-item>
+    </tn-grid-row>
+    <tn-grid-row>
+      <tn-grid-item grid-size="12">
+        <map-path-visualization
+          title="Datapoint paths"
+          tkaq-data-points.bind="tkaqDataPoints"
+        ></map-path-visualization>
       </tn-grid-item>
     </tn-grid-row>
     <tn-grid-row>
