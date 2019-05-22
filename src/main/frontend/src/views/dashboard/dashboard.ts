@@ -13,7 +13,6 @@ export class Dashboard {
   collectionId: string = "17dh0cf43jfi2f";
   devices: Device[] = [];
   tkaqDataPoints: TKAQDataPoint[] = [];
-  filteredTkaqDataPoints: TKAQDataPoint[] = [];
 
   @bindable filteredDeviceId: string = "*";
   @bindable isLive: boolean = true;
